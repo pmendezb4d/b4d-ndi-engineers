@@ -22,6 +22,7 @@ namespace B4D.UI.Utils
 
         public void SetUrl(string url)
         {
+            Debug.Log(url);
             //loader.Show(true);
             DownloaderManager.Instance.GetAssetTexture2D(url, SetImage, null, true);
         }

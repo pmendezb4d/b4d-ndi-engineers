@@ -10,6 +10,11 @@ namespace App.UI.Home
     {
         [SerializeField] DownloadableImage bannerImage = default;
         [SerializeField] TMP_Text nameLabel = default;
+        [SerializeField] TMP_Text codeLabel = default;
+
+        [SerializeField] Image profileBackgound = default;
+        public Sprite fortineBackgroundSprite;
+
         private Animator cardAnimator;
         private RectTransform rt;
 
@@ -17,6 +22,10 @@ namespace App.UI.Home
         public Engineer Engineer { get; private set; }
 
         private Button button;
+
+        public GameObject certificatePrefab;
+        [SerializeField] Transform ciscoHolder = default;
+        [SerializeField] Transform fortinetHolder = default;
 
         private void Awake()
         {
@@ -32,6 +41,40 @@ namespace App.UI.Home
             index = i;
             bannerImage.SetUrl(Engineer.ImageUrl);
             nameLabel.text = Engineer.Name;
+            codeLabel.text = Engineer.Code;
+            for (int j = 0; j < Engineer.Cisco.Length; j++)
+            {
+                string key = Engineer.Cisco[j];
+                if (HomeView.Instance.certificates.ContainsKey(key))
+                {
+                    string url = HomeView.Instance.certificates[key];
+                    if (url != "")
+                    {
+                        GameObject certificate = Instantiate(certificatePrefab, ciscoHolder);
+                        DownloadableImage dwlImage = certificate.GetComponent<DownloadableImage>();
+                        dwlImage.SetUrl(url);
+                    }
+                }
+            }
+            for (int j = 0; j < Engineer.Fortinet.Length; j++)
+            {
+                string key = Engineer.Fortinet[j];
+                if (HomeView.Instance.certificates.ContainsKey(key))
+                {
+                    string url = HomeView.Instance.certificates[key];
+                    if (url != "")
+                    {
+                        GameObject certificate = Instantiate(certificatePrefab, fortinetHolder);
+                        DownloadableImage dwlImage = certificate.GetComponent<DownloadableImage>();
+                        dwlImage.SetUrl(url);
+                    }
+                }
+            }
+
+            if(Engineer.Cisco.Length < Engineer.Fortinet.Length)
+            {
+                profileBackgound.sprite = fortineBackgroundSprite;
+            }
         }
 
         private void ShowEngineer()

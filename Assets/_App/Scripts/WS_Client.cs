@@ -5,6 +5,7 @@ using System;
 using TMPro;
 public class WS_Client : MonoBehaviour
 {
+    public string endpoint;
     WebSocket ws;
     public bool isConnected;
     public float rate = 1;
@@ -23,7 +24,7 @@ public class WS_Client : MonoBehaviour
 
     private void OnEnable()
     {
-        ws = new WebSocket("ws://localhost:8080");
+        ws = new WebSocket("ws://" + endpoint);
         ws.OnOpen += Connect;
         ws.OnClose += Disconect;
         ws.OnMessage += GetMessage;

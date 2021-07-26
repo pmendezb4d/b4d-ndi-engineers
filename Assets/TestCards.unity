@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d98e5bfcdff4847ad69efa861a8e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ndiName: Unity NDI -GameView
+  _ndiName: Engineers
   _enableAlpha: 1
   _captureMethod: 0
   _sourceCamera: {fileID: 0}
@@ -269,7 +269,7 @@ MonoBehaviour:
   rightMargin: 0
   topMargin: 0
   bottomMargin: 0
-  infinitelyScroll: 0
+  infinitelyScroll: 1
   infiniteScrollingEndSpacing: 0.1
   useOcclusionCulling: 0
   startingPanel: 0
@@ -643,6 +643,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  m_enableGestures: 0
 --- !u!1 &471516455
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf39c5be228e6942aaae12985dbb50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endpoint: localhost:8080
   isConnected: 0
   rate: 1
 --- !u!4 &617785689
@@ -890,6 +892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ade74c91c182e847a0685f6f568c2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollSnap: {fileID: 267921577}
 --- !u!114 &617785691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,7 +1099,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660748076}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

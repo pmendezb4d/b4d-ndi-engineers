@@ -7,6 +7,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using DanielLochner.Assets.SimpleScrollSnap;
+using System.Collections.Generic;
 
 namespace App.UI.Home
 {
@@ -18,6 +19,15 @@ namespace App.UI.Home
         private int bannersToSpawn;
         private int currentBanners;
         public SimpleScrollSnap scrollRect;
+        public Dictionary<string, string> certificates = new Dictionary<string, string>();
+
+        public static HomeView Instance { get; private set; }
+
+        private void Awake()
+        {
+            if (Instance == null)
+                Instance = this;
+        }
 
         private void Start()
         {
@@ -27,9 +37,15 @@ namespace App.UI.Home
 
         private void CreateAllBanners(string json)
         {
-            DestroyAllChildren<EngineerBanner>(contentParent); //Clean
-
             JSONNode node = JSON.Parse(json);
+
+            JSONArray arrayCertificates = node["certificates"].AsArray;
+            for (int i = 0; i < arrayCertificates.Count; i++)
+            {
+                certificates.Add(arrayCertificates[i]["code"], arrayCertificates[i]["imageURL"]);
+            }
+
+            DestroyAllChildren<EngineerBanner>(contentParent); //Clean
             JSONArray array = node["engineers"].AsArray;
             Debug.Log(array.Count);
             bannersToSpawn = array.Count;

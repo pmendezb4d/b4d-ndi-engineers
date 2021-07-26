@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DanielLochner.Assets.SimpleScrollSnap;
 
 public class WS_DataHandeler : MonoBehaviour
 {
     private WS_Client wsClientScript;
+    public SimpleScrollSnap scrollSnap;
 
     private void OnEnable()
     {
@@ -31,6 +33,12 @@ public class WS_DataHandeler : MonoBehaviour
                 Debug.Log("Button: " + splitArray[1]);
                 break;
             case "axis":
+                float axis = float.Parse(splitArray[1]);
+                Debug.Log("Axis: " + splitArray[1]);
+                break;
+            case "ing":
+                int index = int.Parse(splitArray[1]);
+                scrollSnap.GoToPanel(index);
                 Debug.Log("Axis: " + splitArray[1]);
                 break;
         }

@@ -3,15 +3,21 @@ using System;
 
 namespace App.Data
 {
-    [Serializable]
+    [System.Serializable]
     public class Engineer
     {
         public string Name { get; private set; }
+        public string Code { get; private set; }
+        public string[] Cisco { get; private set; }
+        public string[] Fortinet { get; private set; }
         public string ImageUrl { get; private set; }
 
-        public Engineer(string name, string imageUrl)
+        public Engineer(string name, string code, string[] cisco, string[] fortinet, string imageUrl)
         {
             Name = name;
+            Code = code;
+            Cisco = cisco;
+            Fortinet = fortinet;
             ImageUrl = imageUrl;
         }
 
@@ -23,9 +29,7 @@ namespace App.Data
 
         public static Engineer CreateEngineerFromJson(JSONNode node)
         {
-            return new Engineer(
-                node["name"],
-                node["imageUrl"]);
+            return new Engineer(node["name"], node["code"], node["cisco"], node["fortinet"], node["imageUrl"]);
         }
     }
 }
