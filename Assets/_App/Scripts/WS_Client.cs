@@ -42,7 +42,7 @@ public class WS_Client : MonoBehaviour
     {
         if (ws != null)
         {
-            if (ws.IsAlive == false && Time.time > nextCheck)
+            if (ws.IsAlive == false && Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("try to connect");
                 ws.Connect();

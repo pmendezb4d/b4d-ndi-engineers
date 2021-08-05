@@ -3,6 +3,7 @@ using B4D.UI.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DanielLochner.Assets.SimpleScrollSnap;
 
 namespace App.UI.Home
 {
@@ -15,7 +16,7 @@ namespace App.UI.Home
         [SerializeField] Image profileBackgound = default;
         public Sprite fortineBackgroundSprite;
 
-        private Animator cardAnimator;
+        public Animator cardAnimator;
         private RectTransform rt;
 
         private int index;
@@ -26,17 +27,20 @@ namespace App.UI.Home
         public GameObject certificatePrefab;
         [SerializeField] Transform ciscoHolder = default;
         [SerializeField] Transform fortinetHolder = default;
+        private SimpleScrollSnap scroller;
 
         private void Awake()
         {
             //button = GetComponentInChildren<Button>();
             //button.onClick.AddListener(ShowEngineer);
-            cardAnimator = GetComponent<Animator>();
+            //cardAnimator = GetComponent<Animator>();
+            //cardAnimator = GetComponent<Animator>();
             rt = GetComponent<RectTransform>();
         }
 
-        public void SetEngineer(Engineer engineer, int i)
+        public void SetEngineer(Engineer engineer, int i, SimpleScrollSnap scroll)
         {
+            scroller = scroll;
             Engineer = engineer;
             index = i;
             bannerImage.SetUrl(Engineer.ImageUrl);
@@ -84,7 +88,7 @@ namespace App.UI.Home
 
         private void Update()
         {
-            if (rt.localPosition.z < 250)
+            if (scroller.CurrentPanel == index)
             {
                 cardAnimator.SetBool("isOpen", true);
             }
@@ -92,6 +96,14 @@ namespace App.UI.Home
             {
                 cardAnimator.SetBool("isOpen", false);
             }
+            //if (rt.localPosition.z < 250)
+            //{
+            //    cardAnimator.SetBool("isOpen", true);
+            //}
+            //else
+            //{
+            //    cardAnimator.SetBool("isOpen", false);
+            //}
         }
     }
 }

@@ -61,7 +61,7 @@ namespace App.UI.Home
         {
             GameObject bannerObject = Instantiate(bannerPrefab, contentParent);
             EngineerBanner banner = bannerObject.GetComponent<EngineerBanner>();
-            banner.SetEngineer(Engineer.CreateEngineerFromJson(json), index);
+            banner.SetEngineer(Engineer.CreateEngineerFromJson(json), index, scrollRect);
             currentBanners++;
             if (currentBanners >= bannersToSpawn)
             {
